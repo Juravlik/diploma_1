@@ -1,0 +1,51 @@
+root: "static/data"
+
+train_path: "train"
+valid_path: "valid"
+
+seed: 42
+root_to_save_model: "models/classifier"
+device: 'cuda:0'
+
+model:
+  type: nn.models.CustomEfficientnet
+  efficientnet: 'efficientnet-b0'
+  feature_extracting: False
+  num_classes: 9
+
+optimizer:
+  type: torch.optim.Adam
+  lr: 0.001
+
+
+scheduler:
+  type: torch.optim.lr_scheduler.ReduceLROnPlateau
+  factor: 0.5
+  mode: 'min'
+  verbose: True
+  patience: 2
+
+criterion:
+  type: torch.nn.CrossEntropyLoss
+
+dataset:
+  type: nn.data.ClassificationDataset
+
+train_dataloader:
+  batch_size: 64
+  num_workers: 0
+
+valid_dataloader:
+  batch_size: 64
+  num_workers: 0
+# don't need to add shuffle because shuffle will always True in train data set and always False in valid and test data set
+
+trainer:
+  type: nn.models.ClassificationTrainer
+  n_epochs: 150
+  verbose: True
+  save_info_txt: True
+  earlystopping: True
+  es_delta: 0
+  es_patience: 15
+  es_mode: 'loss'

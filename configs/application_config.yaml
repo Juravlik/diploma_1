@@ -1,0 +1,12 @@
+device: 'cuda:0'
+UPLOADED_PATH: 'static/uploads'
+PATH_TO_DIRS: 'static/data/train'
+
+model_checkpoint_path: "models/classifier/checkpoint.pt"
+
+model:
+  type: nn.models.CustomEfficientnet
+  efficientnet: 'efficientnet-b0'
+  feature_extracting: False
+  num_classes: 9
+
