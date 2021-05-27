@@ -2,7 +2,7 @@ device: 'cuda:0'
 UPLOADED_PATH: 'static/uploads'
 PATH_TO_DIRS: 'static/data/train'
 
-model_checkpoint_path: "models/classifier/checkpoint.pt"
+model_checkpoint_path: "models/classifier_v3/checkpoint.pt"
 
 model:
   type: nn.models.CustomEfficientnet
